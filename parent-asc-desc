@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void sortAsc(int arr[], int n) {
+    for (int i = 0; i < n-1; i++)
+        for (int j = i+1; j < n; j++)
+            if (arr[i] > arr[j]) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+}
+
+void sortDesc(int arr[], int n) {
+    for (int i = 0; i < n-1; i++)
+        for (int j = i+1; j < n; j++)
+            if (arr[i] < arr[j]) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+}
+
+int main() {
+    int arr[] = {5, 2, 9, 1, 6};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    pid_t pid = fork();
+
+    if (pid < 0) {
+        printf("Fork failed!\n");
+    } else if (pid == 0) {
+        // Child process - Descending
+        printf("\nChild Process (Descending Sort):\n");
+        sortDesc(arr, n);
+        for (int i = 0; i < n; i++)
+            printf("%d ", arr[i]);
+        printf("\n");
+    } else {
+        // Parent process - Ascending
+        printf("\nParent Process (Ascending Sort):\n");
+        sortAsc(arr, n);
+        for (int i = 0; i < n; i++)
+            printf("%d ", arr[i]);
+        printf("\n");
+    }
+    return 0;
+}
