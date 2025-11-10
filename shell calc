@@ -1,0 +1,52 @@
+#!/bin/bash
+
+echo "------ Simple Calculator ------"
+echo "1. Addition"
+echo "2. Subtraction"
+echo "3. Multiplication"
+echo "4. Division"
+echo "5. Exit"
+
+while true
+do
+    read -p "Enter your choice (1-5): " ch
+
+    case $ch in
+        1)
+            read -p "Enter two numbers: " a b
+            sum=$((a + b))
+            echo "Result: $a + $b = $sum"
+            ;;
+        2)
+            read -p "Enter two numbers: " a b
+            diff=$((a - b))
+            echo "Result: $a - $b = $diff"
+            ;;
+        3)
+            read -p "Enter two numbers: " a b
+            mul=$((a * b))
+            echo "Result: $a * $b = $mul"
+            ;;
+        4)
+            read -p "Enter two numbers: " a b
+            if [ $b -ne 0 ]; then
+                div=$((a / b))
+                echo "Result: $a / $b = $div"
+            else
+                echo "Error: Division by zero not allowed!"
+            fi
+            ;;
+        5)
+            echo "Exiting..."
+            exit 0
+            ;;
+        *)
+            echo "Invalid choice! Please enter between 1-5."
+            ;;
+    esac
+done
+
+
+to execute: 
+chmod +x calc_menu.sh
+./calc_menu.sh
