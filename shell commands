@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Step 1: Create directory and subdirectory
+mkdir -p MyDir/SubDir
+echo "Created directory structure: MyDir/SubDir"
+
+# Step 2: Create a .txt file using cat
+echo "Enter content for file1.txt (Press Ctrl+D to save):"
+cat > MyDir/file1.txt
+
+# Step 3: Make a copy and rename it
+cp MyDir/file1.txt MyDir/file_copy.txt
+echo "Copied file1.txt to file_copy.txt"
+
+# Step 4: Set permissions
+chmod 744 MyDir/file1.txt
+chmod 744 MyDir/file_copy.txt
+echo "Set permissions: rwx for owner, r-- for group and others"
+
+# Step 5: List all files with rights
+echo "Listing files with permissions:"
+ls -l MyDir
+
+
+to execute:
+chmod +x file_ops.sh
+./file_ops.sh
