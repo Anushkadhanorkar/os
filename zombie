@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        // Child process
+        printf("Child process finished execution.\n");
+        exit(0);
+    } else {
+        // Parent process does not call wait()
+        printf("Parent sleeping... child becomes zombie temporarily.\n");
+        sleep(10); // During this time, child is a zombie
+        printf("Parent exiting now.\n");
+    }
+    return 0;
+}
